@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing_extensions import Annotated
 
 from database import Base, engine, get_db
-from services.url_service import make_short_url, expand_short_url
+from services.url_service import make_short_url, expand_short_url, get_all_urls
 from schemas.url import ShortenRequest
 
 app = FastAPI()
@@ -15,6 +15,11 @@ DBSession = Annotated[Session, Depends(get_db)]
 @app.get("/")
 def root():
     return {"message": "Hello World!"}
+
+
+@app.get("/urls")
+def all_urls(db: DBSession):
+    return get_all_urls(db)
 
 
 @app.post("/shorten")
