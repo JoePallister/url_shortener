@@ -4,6 +4,7 @@ from typing_extensions import Annotated
 
 from database import Base, engine, get_db
 from services.url_service import make_short_url, expand_short_url
+from schemas.url import ShortenRequest
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
@@ -17,8 +18,8 @@ def root():
 
 
 @app.post("/shorten")
-def shorten_url(db: DBSession, url: str):
-    return make_short_url(db, url)
+def shorten_url(db: DBSession, body: ShortenRequest):
+    return make_short_url(db, str(body.url))
 
 
 @app.get("/expand")
