@@ -18,7 +18,7 @@ def root():
 
 @app.post("/shorten")
 def shorten_url(db: DBSession, url: str):
-    return make_short_url(url)
+    return make_short_url(db, url)
 
 
 @app.get("/expand")
