@@ -12,11 +12,6 @@ Base.metadata.create_all(bind=engine)
 DBSession = Annotated[Session, Depends(get_db)]
 
 
-@app.get("/")
-def root():
-    return {"message": "Hello World!"}
-
-
 @app.get("/urls")
 def all_urls(db: DBSession):
     return get_all_urls(db)
@@ -24,9 +19,10 @@ def all_urls(db: DBSession):
 
 @app.post("/shorten")
 def shorten_url(db: DBSession, body: ShortenRequest):
+    print(body.url)
     return {"short_url": process_long_url(db, str(body.url))}
 
 
-@app.get("/expand")
+@app.get("/")
 def expand_url(db: DBSession, short_url: str):
     return expand_short_url(db, short_url)
