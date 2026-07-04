@@ -24,7 +24,7 @@ def all_urls(db: DBSession):
 
 @app.post("/shorten")
 def shorten_url(db: DBSession, body: ShortenRequest):
-    return process_long_url(db, str(body.url))
+    return {"short_url": process_long_url(db, str(body.url))}
 
 
 @app.get("/expand")
