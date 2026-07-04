@@ -19,3 +19,10 @@ def fetch_long_url(db: Session, short_url: str):
     if url:
         return url.long_url
     return None
+
+
+def does_short_url_exist(db: Session, short_url: str):
+    url = db.query(URL).filter(URL.short_url == short_url).first()
+    if url:
+        return True
+    return False

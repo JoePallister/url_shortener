@@ -12,14 +12,10 @@ def test_create_short_url(client):
 
 
 def test_expand_short_url(client):
-    # First, create a short URL
     res = client.post("/shorten", json={"url": "https://example.com/"})
     assert res.status_code == 200
     short_url = res.json()["short_url"]
 
-    # Now, expand the short URL
-    res = client.get(f"/?short_url={short_url}")
-    assert res.status_code == 200
-    data = res.json()
-
-    assert data == "https://example.com/"
+    res = client.get(f"/{short_url}", follow_redirects=False)
+    assert res.status_code in (307, 308)
+    assert res.headers["location"] == "https://example.com/"

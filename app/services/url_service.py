@@ -5,6 +5,7 @@ from app.repositories.url_repository import (
     write_url_to_db,
     fetch_all_urls,
     fetch_long_url,
+    does_short_url_exist,
 )
 
 BASE62 = string.digits + string.ascii_letters  # 0-9a-zA-Z
@@ -21,7 +22,7 @@ def process_long_url(db: Session, url: str) -> str:
 
 def generate_short_url(db: Session, length: int = 8) -> str:
     candidate = "".join(random.choices(BASE62, k=length))
-    while fetch_long_url(db, candidate):
+    while does_short_url_exist(db, candidate):
         candidate = "".join(random.choices(BASE62, k=length))
     return candidate
 

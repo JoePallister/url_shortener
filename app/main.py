@@ -20,7 +20,6 @@ def all_urls(db: DBSession):
 
 @app.post("/shorten")
 def shorten_url(db: DBSession, body: ShortenRequest):
-    print(body.url)
     return {"short_url": process_long_url(db, str(body.url))}
 
 
@@ -29,5 +28,4 @@ def expand_url(db: DBSession, short_url: str):
     long_url = expand_short_url(db, short_url)
     if long_url is None:
         raise HTTPException(status_code=404)
-
     return RedirectResponse(url=long_url)
