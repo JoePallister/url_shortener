@@ -1,18 +1,30 @@
+# Running
+
 To run the api cd into app, activate the venv and run
 
-uvicorn main:app --reload
+```uvicorn main:app --reload```
 
-Need to remember: 
+# Testing
 
-Use short_code as the DB index since we will be doing lookups (including uniqueness lookup) on it
+To test posting a long url to shorten it
+
+```bash test_scripts/post_long_url.sh "https://example.com"```
+
+To test getting the long url from a short url 
+
+```bash test_scripts/get_long_url.sh <your-short-url>```
+
+Or to get all urls stored
+
+```bash test_scripts/get_all_urls.sh```
+
+# Notes
 
 Table could later have 
 
 created_at
 expires_at (optional)
 click_count (optional later)
-
-On collision have chosen to generate a new code
 
 How do we redirect? The short URL should first go to our API
 

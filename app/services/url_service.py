@@ -6,7 +6,7 @@ from repositories.url_repository import write_url_to_db, fetch_all_urls, fetch_l
 BASE62 = string.digits + string.ascii_letters  # 0-9a-zA-Z
 
 
-def make_short_url(db: Session, url: str) -> str:
+def process_long_url(db: Session, url: str) -> str:
     if not validate_url(url):
         raise ValueError("Invalid URL")
 
@@ -26,8 +26,8 @@ def get_all_urls(db: Session):
     return fetch_all_urls(db)
 
 
-def expand_short_url(short_url: str) -> str:
-    return short_url
+def expand_short_url(db: Session, short_url: str):
+    return fetch_long_url(db, short_url)
 
 
 def validate_url(url: str) -> bool:
