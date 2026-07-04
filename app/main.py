@@ -1,4 +1,5 @@
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from typing_extensions import Annotated
 
@@ -23,6 +24,10 @@ def shorten_url(db: DBSession, body: ShortenRequest):
     return {"short_url": process_long_url(db, str(body.url))}
 
 
-@app.get("/")
+@app.get("/{short_url}")
 def expand_url(db: DBSession, short_url: str):
-    return expand_short_url(db, short_url)
+    long_url = expand_short_url(db, short_url)
+    if long_url is None:
+        raise HTTPException(status_code=404)
+
+    return RedirectResponse(url=long_url)
