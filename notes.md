@@ -1,8 +1,8 @@
 # Running
 
-To run the api cd into app, activate the venv and run
+To run the api activate the venv and run
 
-```uvicorn main:app --reload```
+```uvicorn app.main:app --reload```
 
 # Testing
 
@@ -29,3 +29,5 @@ click_count (optional later)
 How do we redirect? The short URL should first go to our API
 
 URL validation
+
+What are aliases here?

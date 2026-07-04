@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from models.url import URL
+from app.models.url import URL
 
 
 def write_url_to_db(db: Session, short_url: str, long_url: str):

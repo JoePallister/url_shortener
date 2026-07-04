@@ -1,5 +1,5 @@
 [project]
-name = "app"
+name = "url-shortener"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -8,5 +8,5 @@ dependencies = [
     "fastapi>=0.139.0",
     "pydantic-settings>=2.14.2",
     "sqlalchemy>=2.0.51",
-    "uvicorn>=0.49.0",
+    "uvicorn>=0.50.0",
 ]

@@ -2,9 +2,9 @@ from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
 from typing_extensions import Annotated
 
-from database import Base, engine, get_db
-from services.url_service import process_long_url, expand_short_url, get_all_urls
-from schemas.url import ShortenRequest
+from app.database import Base, engine, get_db
+from app.services.url_service import process_long_url, expand_short_url, get_all_urls
+from app.schemas.url import ShortenRequest
 
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
