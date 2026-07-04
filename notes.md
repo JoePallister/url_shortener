@@ -18,6 +18,10 @@ Or to get all urls stored
 
 ```bash test_scripts/get_all_urls.sh```
 
+Run pytest with
+
+```python -m pytest```
+
 # Notes
 
 Table could later have 
