@@ -1,9 +1,9 @@
-from sqlalchemy import Column, String
 from database import Base
+from sqlalchemy.orm import Mapped, mapped_column
 
 
 class URL(Base):
     __tablename__ = "urls"
 
-    short_url = Column(String, primary_key=True, index=True)
-    long_url = Column(String, index=True)
+    short_url: Mapped[str] = mapped_column(primary_key=True)
+    long_url: Mapped[str]

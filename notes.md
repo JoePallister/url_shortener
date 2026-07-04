@@ -14,6 +14,6 @@ click_count (optional later)
 
 On collision have chosen to generate a new code
 
-How do we redirect?
+How do we redirect? The short URL should first go to our API
 
 URL validation
