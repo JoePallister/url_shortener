@@ -1,5 +1,9 @@
 # Running
 
+Set up redis with
+
+```docker compose up```
+
 To run the api activate the venv and run
 
 ```uvicorn app.main:app --reload```
