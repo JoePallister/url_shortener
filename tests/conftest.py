@@ -18,11 +18,16 @@ TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin
 class FakeRedis:
     def __init__(self):
         self.store = {}
+        self.successful_get_calls = 0
+        self.set_calls = 0
 
     def get(self, key):
+        if key in self.store:
+            self.successful_get_calls += 1
         return self.store.get(key)
 
     def set(self, key, value):
+        self.set_calls += 1
         self.store[key] = value
 
 
