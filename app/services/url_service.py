@@ -1,6 +1,7 @@
 import random
 import string
 from sqlalchemy.orm import Session
+from redis import Redis
 from app.repositories.url_repository import (
     write_url_to_db,
     fetch_all_urls,
@@ -31,8 +32,8 @@ def get_all_urls(db: Session):
     return fetch_all_urls(db)
 
 
-def expand_short_url(db: Session, short_url: str):
-    return fetch_long_url(db, short_url)
+def expand_short_url(redis: Redis, db: Session, short_url: str):
+    return fetch_long_url(redis, db, short_url)
 
 
 def validate_url(url: str) -> bool:

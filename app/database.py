@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from redis import Redis
 
 from app.config import settings
 
@@ -23,3 +24,14 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+redis = Redis(
+    host="localhost",
+    port=6379,
+    decode_responses=True,
+)
+
+
+def get_redis():
+    return redis
